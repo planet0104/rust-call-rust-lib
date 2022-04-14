@@ -1,6 +1,9 @@
 use std::os::raw::c_int;
 
-#[link(name = "md5", kind="static")]
+// #[link(name = "md5", kind="static")]
+// #[cfg_attr(all(target_os = "windows", target_env = "msvc"), link(name = "md5.dll", kind="dylib"))]
+// #[cfg_attr(not(all(target_os = "windows", target_env = "msvc")), link(name = "md5", kind="dylib"))]
+#[link(name = "md5.dll", kind="dylib")]
 extern "C" {
   fn md5(input: *const u8, input_len: c_int, output: *mut u8);
 }
